@@ -1,0 +1,17 @@
+# Sources for the arrival and departure lists.  If separate_sources is "true",
+# only arrivals_uri will be used.
+arrivals_uri: http://source-server.net/xml/departures.xml
+departures_uri: http://source-server.net/xml/arrivals.xml
+separate_sources: !!bool "true"
+
+# Display arrivals or departures?
+display_screen: departures
+
+# These are both in seconds
+update_interval: 30
+page_interval: 15
+
+# Choices are debug, warn, info, and silent.  Silent will not produce any
+# output and will not rotate log files.
+log_level: debug
+print_level: debug

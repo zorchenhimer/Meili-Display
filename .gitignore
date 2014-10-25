@@ -1,0 +1,8 @@
+Kudos Applications/
+cache/*
+fixed.xml
+Thumbs.db
+config.yaml
+*.pyc
+*.log
+*.swp
