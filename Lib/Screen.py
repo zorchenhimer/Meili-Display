@@ -83,7 +83,12 @@ class ScreenController():
 		self.RowsPerPage = 10	# 12 rows minus the header
 		self.FirstRow = 0		# First row to draw
 		
-		self.Source = ds.XMLSource()
+		# FIXME: proper error handling and checking needed here.
+		if config.SourceURI[-4:] == '.xml':
+			self.Source = ds.JSONSource()
+		else:
+			self.Source = ds.XMLSource()
+			
 		self.CachedList = Data.BusList()
 		self.List = Data.BusList()
 		self.ArrivalHeader = HeaderRow(Data.BusArrival("Company", "City", "Time", "Status"))

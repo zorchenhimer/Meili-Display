@@ -48,9 +48,38 @@ class BaseSource():
 	def ParseSource(self):
 		raise NotImplementedError
 
+class JSONSource(BaseSource):
+	def ParseSource(self):
+		jfile = open(self.LocalSourse, 'r')
+		json_dict = json.load(jfile)
+		jfile.close()
+		
+		self.Arrivals.clear()
+		self.Departures.clear()
+		
+		for arrival in json_dict['arrivals']:
+			self.Arrivals.append(
+				Data.BusArrival( arrival['company'],
+								 arrival['city'],
+								 arrival['time'],
+								 arrival['status']
+								 )
+			)
+		
+		for departure in json_dict['departures']:
+			self.Departures.append(
+				Data.BusDeparture( departure['company'],
+								   departure['city'],
+								   departure['time'],
+								   departure['status'],
+								   departure['gate'],
+								   departure['busnum']
+								   )
+			)
+		
 class XMLSource(BaseSource):
-	def __init__(self):
-		BaseSource.__init__(self)
+#	def __init__(self):
+#		BaseSource.__init__(self)
 		
 	def ParseSource(self):
 		data = ET.parse(self.LocalSource)
