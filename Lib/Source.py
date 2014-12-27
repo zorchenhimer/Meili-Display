@@ -45,13 +45,6 @@ class BaseSource():
 			checks.Update('source_update')
 			checks.SetTrue('dirty_source')
 	
-	def DownloadRemote(self):
-		dlfile = urllib.URLopener()
-		try:
-			dlfile.retrieve(self.RemoteSource, self.LocalSource)
-		except Exception as ex:
-			Warn("DL of '"+self.RemoteSource+"' failed: "+str(e))
-
 	def ParseSource(self):
 		raise NotImplementedError
 
