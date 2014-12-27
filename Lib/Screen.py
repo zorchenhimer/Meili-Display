@@ -86,8 +86,10 @@ class ScreenController():
 		# FIXME: proper error handling and checking needed here.
 		if config.SourceURI[-4:] == '.xml':
 			self.Source = ds.JSONSource()
+			Debug('XML source found.')
 		else:
 			self.Source = ds.XMLSource()
+			Debug('JSON source found.')
 			
 		self.CachedList = Data.BusList()
 		self.List = Data.BusList()
@@ -111,8 +113,9 @@ class ScreenController():
 			static = RowStatic()
 			self.ErrorScreen = static.HeaderFont.render("Error: Failed to retrieve update!", True, color).convert_alpha()
 			checks.SetTrue('error')
+			exit()
 			## This makes debugging easier
-			raise e
+			#raise e
 			
 		if checks.GetState('dirty_source') is True:
 			checks.SetFalse('dirty_source')
@@ -333,9 +336,9 @@ class RowStatic():
 	class _static:
 		def __init__(self):
 			## Warning: these should probably be absolute paths.
-			self.Font = pygame.font.Font('Lib/profont.ttf', 30)#20)
-			self.HeaderFont = pygame.font.Font('Lib/profont.ttf', 45)#30)
-			self.TimeFont = pygame.font.Font('Lib/profont.ttf', 33)# 25)
+			self.Font = pygame.font.Font('Lib/profont.ttf', 20)#30)
+			self.HeaderFont = pygame.font.Font('Lib/profont.ttf', 30)#45)
+			self.TimeFont = pygame.font.Font('Lib/profont.ttf', 25)# 33)
 			self.FontColor_Dark = (0, 0, 0)
 			self.FontColor_Light = (200, 200, 200)
 			self.HeaderFontColor = (255, 255, 255)

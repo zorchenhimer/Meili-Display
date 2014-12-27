@@ -10,7 +10,7 @@ from Lib.Timer import UpdateChecks
 class MainWindow():
 	def __init__(self):
 		config = st.Config()
-		self.Screen = bs.ScreenController(1920, 1080)
+		self.Screen = bs.ScreenController()
 		bl.SetLogLevel(config.LogLevel)
 		bl.SetPrintLevel(config.PrintLevel)
 		

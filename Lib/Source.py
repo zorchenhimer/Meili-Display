@@ -45,13 +45,30 @@ class BaseSource():
 			checks.Update('source_update')
 			checks.SetTrue('dirty_source')
 	
+	def DownloadRemote(self):
+		dlfile = urllib.URLopener()
+		try:
+			dlfile.retrieve(self.RemoteSource, self.LocalSource)
+		except Exception as ex:
+			Warn("DL of '"+self.RemoteSource+"' failed: "+str(e))
+
 	def ParseSource(self):
 		raise NotImplementedError
 
 class JSONSource(BaseSource):
+	def __init__(self):
+		BaseSource.__init__(self)
+		Debug('JSONSource init\'d')
+
 	def ParseSource(self):
-		jfile = open(self.LocalSourse, 'r')
-		json_dict = json.load(jfile)
+		Debug('Entering JSONSource.ParseSource()')
+		jfile = open(self.LocalSource, 'r')
+		try:
+			Debug('Attempting to load jfile...')
+			json_dict = json.load(jfile)
+		except Exception as ex:
+			Error("Unable to load jfile.\n" + str(jfile))
+			exit()
 		jfile.close()
 		
 		self.Arrivals.clear()

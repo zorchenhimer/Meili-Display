@@ -92,15 +92,8 @@ print_level: """ + self.__print_level + """
 			
 			data = yaml.load(rawyaml)
 			for k in data.keys():
-				if k == "arrivals_uri":
-					self.__arrivals_uri = data[k]
-				elif k == "departures_uri":
-					self.__departures_uri = data[k]
-				elif k == "separate_sources":
-					if type(data[k]) == type(True):
-						self.__separate_sources = data[k]
-					else:
-						Warn("Configuration item 'separate_sources' is wrong type.  Using default value of '" + str(self.__separate_sources) + "'")
+				if k == "source_uri":
+					self.__source_uri = data[k]
 				elif k == "display_screen":
 					if data[k] == "departures" or data[k] == "arrivals":
 						self.__display_screen = data[k]
